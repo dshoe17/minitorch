@@ -62,7 +62,7 @@ def sigmoid(x: float) -> float:
 
     for stability.
     """
-    return 1.0 / (1.0 + math.exp(x)) if x >= 0 else math.exp(x) / (1.0 + math.exp(x))
+    return 1.0 / (1.0 + exp(x)) if x >= 0 else exp(x) / (1.0 + exp(x))
 
 
 def relu(x: float) -> float:
@@ -71,7 +71,7 @@ def relu(x: float) -> float:
 
     (See https://en.wikipedia.org/wiki/Rectifier_(neural_networks) .)
     """
-    return x if x > 0 else 0
+    return max(x, 0)
 
 
 EPS = 1e-6
@@ -89,26 +89,25 @@ def exp(x: float) -> float:
 
 def log_back(x: float, d: float) -> float:
     r"If $f = log$ as above, compute $d \times f'(x)$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    return d * inv(x)
 
 
 def inv(x: float) -> float:
     "$f(x) = 1/x$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    return 1 / x
 
 
 def inv_back(x: float, d: float) -> float:
     r"If $f(x) = 1/x$ compute $d \times f'(x)$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    return -d * inv(x**2)
 
 
 def relu_back(x: float, d: float) -> float:
     r"If $f = relu$ compute $d \times f'(x)$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    if x > 0:
+        return d
+    elif x < 0: 
+        return 0
 
 
 # ## Task 0.3
