@@ -157,6 +157,7 @@ def zipWith(
     """
     def _zipWith(l1: Iterable[float], l2: Iterable[float]) -> Iterable[float]:
         return [fn(*args) for args in zip(l1, l2)]
+    return _zipWith
 
 
 def addLists(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
@@ -183,6 +184,7 @@ def reduce(
         for item in ls:
             start = fn(start, item)
         return start
+    return _reduce
 
 
 def sum(ls: Iterable[float]) -> float:
