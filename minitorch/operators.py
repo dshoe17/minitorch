@@ -129,6 +129,7 @@ def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[fl
          new list
     """
     def _map(arr: Iterable[float]) -> Iterable[float]:
+        nonlocal fn
         return [fn(item) for item in arr]
     
     return _map
@@ -156,6 +157,7 @@ def zipWith(
 
     """
     def _zipWith(l1: Iterable[float], l2: Iterable[float]) -> Iterable[float]:
+        nonlocal fn
         return [fn(*args) for args in zip(l1, l2)]
     return _zipWith
 
@@ -181,6 +183,7 @@ def reduce(
          fn(x_1, x_0)))`
     """
     def _reduce(ls: Iterable[float]) -> float:
+        nonlocal fn, start
         for item in ls:
             start = fn(start, item)
         return start
